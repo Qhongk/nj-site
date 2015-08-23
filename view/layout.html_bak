@@ -1,0 +1,74 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Rick's{% endblock %} - Rick's Kzaza</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="keywords" content="{% block keywords %}koajs,express,nodejs,es6,ecma6,javascript,seajs,angularjs{% endblock %}">
+    <meta name="author" content="kqhon@foxmail.com" />
+    <meta name="description" content="{% block description %}开源博客{% endblock %}">
+    <link rel="stylesheet" href="/css/style.css" type="text/css" />
+    <script src="/js/jquery/jquery.js"></script>
+    <script src="/js/editor/kindeditor.js"></script>
+    <script src="/js/code/prettify.js"></script>
+</head>
+<body>
+
+<div class="header">
+
+    <div class="wrap">
+        <div class="top">
+            <h1>Kzaza</h1>
+            <p>Hello World</p>
+        </div>
+    </div>
+    <div class="nav">
+        <div class="wrap clearfix">
+
+            <span class="fr auth">
+                {% if G.user.id!='' %}
+                <a href="/blog/blog/user/uid/{{G.user.id}}">
+                <img class="avatar" src="https://0.gravatar.com/avatar/{{F.user.avatar(G.user.email,32)}}">
+                </a>
+                <a class="btn btn-primary btn-xs" href="/blog/blog/user/uid/{{G.user.id}}">{{G.user.username}}</a>
+                 <a class="btn btn-primary btn-xs" href="/auth/auth/logout">退出</a>
+                {% else %}
+                <a class="btn btn-primary btn-xs" href="/auth/auth/login">登录</a>
+                <a class="btn btn-primary btn-xs" href="/auth/auth/register">注册</a>
+                <a class="btn btn-primary btn-xs" href="/auth/auth/forget">找回密码</a>
+                {% endif %}
+            </span>
+
+            <span class="navlist">
+                <a href="/">首页</a>
+            {% for t in G.tag %}
+                <a href="/blog/blog/category/tag/{{t.key}}">{{t.name}}</a>
+                {% endfor %}
+            </span>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<div class="main wrap cobox">
+    {% block content %}
+    <p>找不到相应的内容</p>
+    {% endblock %}
+</div>
+<div class="footer">
+    <div id="copyright" class="wrap copyright">Design By Rick's Kzaza <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备14052253号</a>
+        <a class="btn btn-primary btn-xs" href="https://github.com/Qhongk" target="_blank">
+            <span class="glyphicon glyphicon-check"></span>
+            on GitHub
+        </a>
+    </div>
+</div>
+
+<script>
+    prettyPrint();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+    "name": "ripple-blog",
+    "description": "blog njs",
+    "version": "0.1.1",
+    "dependencies": {
+        "koa": "*",
+        "koa-static-cache": "*",
+        "koa-logger": "*",
+        "co": "*",
+        "co-fs": "*",
+        "co-body": "*",
+        "co-views": "*",
+        "swig": "*",
+        "xss": "*",
+        "mongoose": "*",
+        "underscore": "^1.6.0"
+    },
+    "engines": {
+        "node": ">= 11.3"
+    }
+}

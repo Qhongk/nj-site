@@ -1,0 +1,1 @@
+require(__dirname+'/lib/index')(__dirname,__dirname+'/lib/');

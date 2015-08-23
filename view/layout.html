@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}Rick's{% endblock %} - Rick's Kzaza</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="keywords" content="{% block keywords %}koajs,express,nodejs,es6,ecma6,javascript,bootstrap,angularjs{% endblock %}">
+    <meta name="author" content="kqhon@foxmail.com"/>
+    <meta name="description" content="{% block description %}开源博客{% endblock %}">
+
+    <link href="/js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/js/bootstrap/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="/css/style.css" type="text/css"/>
+
+    <script src="/js/editor/kindeditor.js"></script>
+    <script src="/js/code/prettify.js"></script>
+</head>
+<body data-spy="scroll" data-target=".navbar">
+<header>
+    <div id="navbar" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/" title="Hello World!">Ripples</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#sign-up">Picture</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#article">Blog</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tags <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            {% for t in G.tag %}
+                            <li><a href="/blog/blog/category/tag/{{t.key}}">{{t.name}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if G.user.id!='' %}
+                    <li><a href="/blog/blog/user/uid/{{G.user.id}}">Hi, {{G.user.username}}</a></li>
+                    <li><a href="/auth/auth/logout">Logout</a></li>
+                    {% else %}
+                    <li><a href="/auth/auth/login">Login</a></li>
+                    <li><a href="/auth/auth/register">Sign up</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+<div id="content" class="content-warp">
+    {% block content %}
+    <p>找不到相应的内容</p>
+    {% endblock %}
+</div>
+
+{% include "common/footer.html" ignore missing %}
+<script>
+    prettyPrint();
+</script>
+</body>
+</html>

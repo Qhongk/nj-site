@@ -1,0 +1,60 @@
+{% extends '../layout.html' %}
+
+{% block title %}{{tag}}{% endblock %}
+{% block content %}
+<section id="article">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-3 col-sm-push-9">
+                <li>asdasd</li>
+                <li>asdasd</li>
+                <li>asdasd</li>
+                <li>asdasd</li>
+                <li>asdasd</li>
+                <li>asdasd</li>
+            </div>
+            <div class="col-xs-12 col-sm-9 col-sm-pull-3">
+                <ol class="breadcrumb">
+                    <li><a href="/">首页</a></li>
+                    <li class="active">{{ tag }}</li>
+                </ol>
+                <div class="subnav">
+                    {% if G.user.id!='' %}
+                    <a href="/blog/blog/add" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span>发布文章</a>
+                    {% endif %}
+                    {% if G.user.status==1 %}
+                    <a href="/blog/tag/add" class="btn btn-success"><span
+                            class="glyphicon glyphicon-plus"></span>添加标签</a>
+                    {% endif %}
+                </div>
+                <div>
+                    {% for vo in data %}
+                    <article class="article">
+                        <header>
+                            <h2 class="article-title"><a href="/blog/blog/show/id/{{ vo._id.toString() }}">{{ vo.title }}</a></h2>
+
+                            <p>
+                                {% if G.user.id==vo.author || G.user.status==1 %}
+                                <a href="/blog/blog/edit/id/{{ vo._id.toString() }}">修改</a>
+                                <a href="/blog/blog/del/id/{{ vo._id.toString() }}">删除</a>
+                                <span class="date">{{F.date.dgm(vo.updatetime)}}</span>
+                                {% endif %}
+                            </p>
+                        </header>
+                        <div class="article-content">
+                            <p>{{F.html.subhtml(vo.content)}}</p>
+                        </div>
+                    </article>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="pagination-warp">{{page|safe}}</div>
+        </div>
+    </div>
+</section>
+{% if G.user.id == '' %}
+{% include "../block/sign-up.html" ignore missing %}
+{% endif %}
+{% endblock %}
