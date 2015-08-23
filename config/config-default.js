@@ -1,6 +1,6 @@
 module.exports=function(root){
     return {
-        mongo:'mongodb://127.0.0.1:27017/kqhDB',
+        mongo:'mongodb://127.0.0.1:27017/youDB',
         model:root+'/model/',
         view:root+'/view/',
         controller:root+'/controller/',
